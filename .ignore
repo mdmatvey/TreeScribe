@@ -1,0 +1,132 @@
+# System Files
+.DS_Store               # macOS
+Thumbs.db               # Windows
+desktop.ini             # Windows
+ehthumbs.db             # Windows
+.AppleDouble            # macOS
+.Spotlight-V100         # macOS
+.Trashes                # macOS
+.vscode/                # Visual Studio Code editor settings
+
+# Version Control
+.git                    # Git directory
+.gitignore              # Git ignore rules (should not be tracked)
+.hg/                    # Mercurial directory
+.svn/                   # Subversion directory
+
+# Build Files
+node_modules/           # Node.js package directory
+dist/                   # Distribution folder for built files
+build/                  # Generic build output directory
+*.log                   # Log files
+*.out                   # Output files
+*.pid                   # Process ID files
+.idea/                  # IntelliJ IDEA and WebStorm project files
+.vscode/                # VSCode project settings
+.project                # Eclipse IDE project
+.classpath              # Eclipse classpath file
+.settings/              # Eclipse settings directory
+*.iml                   # IntelliJ IDEA module files
+
+# Compiled/Binary Files
+*.exe                   # Windows executable
+*.dll                   # Windows dynamic library
+*.so                    # Linux shared object
+*.dylib                 # macOS shared library
+*.a                     # Static library
+*.o                     # Object file
+*.out                   # Compiled output
+*.app                   # macOS application bundle
+*.apk                   # Android package
+*.ipa                   # iOS app package
+*.pyc                   # Python bytecode file
+*.pyo                   # Python optimized bytecode file
+*.class                 # Java compiled bytecode
+*.jar                   # Java archive
+
+# Temporary Files
+*.swp                   # Vim swap files
+*.swo                   # Vim swap files
+*.bak                   # Backup files
+*.tmp                   # Temporary files
+*.temp                  # Temporary files
+*~                      # Backup files
+.nfs*                   # NFS lock files
+.vagrant/               # Vagrant files
+.terraform/             # Terraform files
+.tox/                   # Python testing environment files
+
+# Language-Specific Ignore Patterns
+
+# Node.js / JavaScript / TypeScript
+node_modules/           # Node.js dependencies
+*.tsbuildinfo           # TypeScript incremental build files
+.npm/                   # NPM global packages
+.yarn/                  # Yarn global packages
+
+# Python
+__pycache__/            # Python cache directory
+.python_version         # Python version
+.tox/                   # Python testing environment
+.coverage               # Coverage reports
+.hypothesis/            # Hypothesis testing framework
+.nox/                   # Nox testing environment
+
+# Java
+target/                 # Maven build output directory
+*.class                 # Java bytecode
+.classpath              # Eclipse classpath file
+.project                # Eclipse project
+*.war                   # Web archive
+*.jar                   # Java archive
+*.ear                   # Enterprise archive
+.idea/                  # IntelliJ IDEA project files
+*.iml                   # IntelliJ IDEA module files
+
+# C / C++
+*.o                     # Object files
+*.a                     # Static libraries
+*.so                    # Shared libraries
+*.exe                   # Windows executables
+*.out                   # Executable output files
+.vscode/                # Visual Studio Code settings
+.idea/                  # IntelliJ IDEA settings
+
+# Ruby
+.bundle/                # Bundler directory
+*.gem                   # Ruby gem files
+*.rbc                   # Ruby compiled files
+.ruby-version           # Ruby version file
+.rvm/                   # RVM directory
+
+# Go
+bin/                    # Go binary output
+pkg/                    # Go package output
+*.exe                   # Go executables on Windows
+
+# PHP
+vendor/                 # Composer dependencies
+*.log                   # Log files
+
+# Docker
+.docker/                # Docker specific configuration
+docker-compose.override.yml  # Local Docker Compose configuration
+Dockerfile.*            # Dockerfiles with custom names
+
+# Haskell
+.ghc/                   # GHC compilation files
+.stack-work/            # Stack build directory
+
+# Android (Java / Kotlin)
+*.apk                   # Android package
+*.aar                   # Android archive
+.gradle/                # Gradle build directory
+.idea/                  # IntelliJ IDEA settings
+build/                  # Build output
+
+# Swift / Xcode
+*.xcodeproj/            # Xcode project
+*.xcworkspace/          # Xcode workspace
+*.xcuserstate           # Xcode user state
+*.app                   # macOS app bundle
+*.ipa                   # iOS app package
