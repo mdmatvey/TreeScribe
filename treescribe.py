@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import fnmatch
 import argparse
@@ -53,14 +55,37 @@ def generate_tree_lines(directory, ignore_patterns, include_patterns, parent_pre
     except PermissionError:
         return lines, files
 
+    file_include_patterns = []
+    dir_include_patterns = []
+    if include_patterns:
+        for pattern in include_patterns:
+            if pattern.endswith('/'):
+                dir_include_patterns.append(pattern)
+            else:
+                file_include_patterns.append(pattern)
+    has_file_includes = len(file_include_patterns) > 0
+
     filtered_entries = []
     for entry in entries:
         entry_path = os.path.join(directory, entry)
+        is_dir = os.path.isdir(entry_path)
+
         if include_patterns:
-            if not matches_include_patterns(entry_path, include_patterns):
-                continue
+            if is_dir:
+                include_dir = False
+                if has_file_includes:
+                    include_dir = True
+                else:
+                    include_dir = matches_include_patterns(entry_path, dir_include_patterns)
+                if not include_dir:
+                    continue
+            else:
+                if not matches_include_patterns(entry_path, file_include_patterns):
+                    continue
+
         if match_ignore_patterns(entry_path, ignore_patterns):
             continue
+
         filtered_entries.append(entry)
 
     filtered_entries.sort()
