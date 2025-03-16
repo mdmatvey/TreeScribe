@@ -1,6 +1,7 @@
 # Script Files
 .treescribe.py           # Script file
 .trscrignore             # Ignore file
+.treescribe.output.txt   # Output file
 
 # System Files
 .DS_Store               # macOS
@@ -59,6 +60,27 @@ build/                  # Generic build output directory
 .vagrant/               # Vagrant files
 .terraform/             # Terraform files
 .tox/                   # Python testing environment files
+
+# Media Files
+*.pdf                   # PDF files
+*.mov                   # Apple QuickTime Movie
+*.mp4                   # MPEG-4 video
+*.avi                   # AVI video
+*.mkv                   # Matroska video
+*.png                   # Portable Network Graphics
+*.jpg                   # JPEG image
+*.jpeg                  # JPEG image
+*.gif                   # GIF image
+*.bmp                   # Bitmap image
+*.tiff                  # TIFF image
+*.svg                   # Scalable Vector Graphics
+*.mp3                   # MP3 audio
+*.wav                   # WAV audio
+*.flac                  # FLAC audio
+*.aac                   # AAC audio
+*.ogg                   # OGG audio
+*.webm                  # WebM video
+*.webp                  # WebP image
 
 # Language-Specific Ignore Patterns
 
