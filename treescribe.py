@@ -89,29 +89,33 @@ def generate_tree_lines(directory, ignore_patterns, include_patterns, parent_pre
 
     return lines, files
 
-def write_tree_to_file(root_directory, ignore_patterns, include_patterns, output_file):
-    """Generate the tree and file contents, then write to the output file."""
+def generate_output(root_directory, ignore_patterns, include_patterns):
+    """Generate the tree structure and file content strings."""
     tree_lines, file_paths = generate_tree_lines(root_directory, ignore_patterns, include_patterns)
-    with open(output_file, 'w') as f:
-        f.write('\n'.join(tree_lines))
-        f.write('\n\n' + '=' * 50 + '\n\n')
-        for file_path in file_paths:
-            f.write(f'{file_path}\n')
-            try:
-                with open(file_path, 'r') as content_file:
-                    content = content_file.read()
-                f.write(content)
-                if content and not content.endswith('\n'):
-                    f.write('\n')
-            except Exception as e:
-                f.write(f'[Error reading file: {e}]\n')
-            f.write('\n' + '-' * 50 + '\n\n')
+    tree_str = '\n'.join(tree_lines)
+    
+    content_str = '\n\n' + '=' * 50 + '\n\n'
+    for file_path in file_paths:
+        content_str += f'{file_path}\n'
+        try:
+            with open(file_path, 'r') as content_file:
+                content = content_file.read()
+            content_str += content
+            if content and not content.endswith('\n'):
+                content_str += '\n'
+        except Exception as e:
+            content_str += f'[Error reading file: {e}]\n'
+        content_str += '\n' + '-' * 50 + '\n\n'
+    return tree_str, content_str
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Generate directory tree and file contents with include/exclude filters.')
     parser.add_argument('-i', '--include', action='append', help='Include patterns (e.g., "*.py", "src/")')
     parser.add_argument('-e', '--exclude', action='append', help='Exclude patterns (e.g., "build/", "*.tmp")')
     parser.add_argument('-o', '--output', default='treescribe.output.txt', help='Output file name')
+    parser.add_argument('-n', '--no-file', action='store_true', help='Do not write to a file')
+    parser.add_argument('-t', '--print-tree', action='store_true', help='Print directory structure to terminal')
+    parser.add_argument('-c', '--print-content', action='store_true', help='Print file contents to terminal')
     args = parser.parse_args()
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -125,5 +129,16 @@ if __name__ == "__main__":
     root_directory = os.getcwd()
     output_file = args.output
 
-    write_tree_to_file(root_directory, ignore_patterns, include_patterns, output_file)
-    print(f"Done. See {output_file}")
+    tree_str, content_str = generate_output(root_directory, ignore_patterns, include_patterns)
+    full_output = tree_str + content_str
+
+    if not args.no_file:
+        with open(output_file, 'w') as f:
+            f.write(full_output)
+        print(f"Done. See {output_file}")
+
+    if args.print_tree:
+        print(tree_str)
+    
+    if args.print_content:
+        print(content_str)
