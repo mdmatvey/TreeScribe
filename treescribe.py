@@ -109,14 +109,33 @@ def generate_output(root_directory, ignore_patterns, include_patterns):
     return tree_str, content_str
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Generate directory tree and file contents with include/exclude filters.')
+    parser = argparse.ArgumentParser(
+        description='Generate directory tree and file contents with include/exclude filters.',
+        formatter_class=argparse.RawTextHelpFormatter
+    )
+    parser.add_argument(
+        '-r', '--root',
+        default=os.getcwd(),
+        help='Root directory to scan (default: current working directory)'
+    )
+    parser.add_argument(
+        '-o', '--output',
+        default='treescribe.output.txt',
+        help='Output file name (default: treescribe.output.txt)'
+    )
     parser.add_argument('-i', '--include', action='append', help='Include patterns (e.g., "*.py", "src/")')
     parser.add_argument('-e', '--exclude', action='append', help='Exclude patterns (e.g., "build/", "*.tmp")')
-    parser.add_argument('-o', '--output', default='treescribe.output.txt', help='Output file name')
     parser.add_argument('-n', '--no-file', action='store_true', help='Do not write to a file')
     parser.add_argument('-t', '--print-tree', action='store_true', help='Print directory structure to terminal')
     parser.add_argument('-c', '--print-content', action='store_true', help='Print file contents to terminal')
+    
     args = parser.parse_args()
+
+    args.root = os.path.abspath(args.root)
+    if not os.path.exists(args.root):
+        raise FileNotFoundError(f"Root directory not found: {args.root}")
+    if not os.path.isdir(args.root):
+        raise NotADirectoryError(f"Path is not a directory: {args.root}")
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
     ignore_file_path = os.path.join(script_dir, '.trscrignore')
@@ -126,16 +145,14 @@ if __name__ == "__main__":
         ignore_patterns += args.exclude
     
     include_patterns = args.include if args.include else []
-    root_directory = os.getcwd()
-    output_file = args.output
 
-    tree_str, content_str = generate_output(root_directory, ignore_patterns, include_patterns)
+    tree_str, content_str = generate_output(args.root, ignore_patterns, include_patterns)
     full_output = tree_str + content_str
 
     if not args.no_file:
-        with open(output_file, 'w') as f:
+        with open(args.output, 'w') as f:
             f.write(full_output)
-        print(f"Done. See {output_file}")
+        print(f"Done. See {args.output}")
 
     if args.print_tree:
         print(tree_str)
