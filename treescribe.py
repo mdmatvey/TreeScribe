@@ -162,8 +162,7 @@ if __name__ == "__main__":
     if not os.path.isdir(args.root):
         raise NotADirectoryError(f"Path is not a directory: {args.root}")
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    ignore_file_path = os.path.join(script_dir, '.trscrignore')
+    ignore_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.trscrignore')
     ignore_patterns = read_ignore_file(ignore_file_path)
     
     if args.exclude:

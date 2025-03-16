@@ -1,7 +1,6 @@
 # Script Files
-.treescribe.py           # Script file
-.trscrignore             # Ignore file
-.treescribe.output.txt   # Output file
+treescribe.output.txt   # Output file
+.trscrignore            # Ignore file
 
 # System Files
 .DS_Store               # macOS
@@ -81,6 +80,25 @@ build/                  # Generic build output directory
 *.ogg                   # OGG audio
 *.webm                  # WebM video
 *.webp                  # WebP image
+
+# Compressed Files
+*.tar                   # TAR archive
+*.tar.gz                # Gzipped TAR archive
+*.tgz                   # Short form for .tar.gz
+*.zip                   # ZIP archive
+*.rar                   # RAR archive
+*.7z                    # 7-Zip archive
+*.gz                    # Gzip compressed file
+*.bz2                   # Bzip2 compressed file
+*.xz                    # XZ compressed file
+*.zst                   # Zstandard compressed file
+*.lzma                  # LZMA compressed file
+*.lz4                   # LZ4 compressed file
+*.lzh                   # LZH compressed file
+*.arj                   # ARJ compressed file
+*.cab                   # CAB compressed file
+*.dmg                   # macOS disk image
+*.iso                   # ISO disk image
 
 # Language-Specific Ignore Patterns
 
