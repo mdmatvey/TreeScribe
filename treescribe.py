@@ -126,3 +126,4 @@ if __name__ == "__main__":
     output_file = args.output
 
     write_tree_to_file(root_directory, ignore_patterns, include_patterns, output_file)
+    print(f"Done. See {output_file}")
